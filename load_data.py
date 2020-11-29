@@ -14,28 +14,28 @@ def read_graphfile(datadir, dataname, max_nodes=None):
         List of networkx objects with graph and node labels
     '''
     prefix = os.path.join(datadir, dataname, dataname)
-    filename_graph_indic = prefix + '_graph_indicator.txt'
+    filename_graph_indic = prefix + '_graph_indicator.txt'#111111222222......107910791079
     # index of graphs that a given node belongs to
     graph_indic={}
     with open(filename_graph_indic) as f:
         i=1
         for line in f:
             line=line.strip("\n")
-            graph_indic[i]=int(line)
+            graph_indic[i]=int(line)# 1:1 2:1 3:1 4:1 5:1 6:1 7:2.......
             i+=1
 
-    filename_nodes=prefix + '_node_labels.txt'
+    filename_nodes=prefix + '_node_labels.txt'#1-20之间的labels，是无序的
     node_labels=[]
     try:
         with open(filename_nodes) as f:
             for line in f:
                 line=line.strip("\n")
                 node_labels+=[int(line) - 1]
-        num_unique_node_labels = max(node_labels) + 1
+        num_unique_node_labels = max(node_labels) + 1 #表示有多少种label
     except IOError:
         print('No node labels')
  
-    filename_node_attrs=prefix + '_node_attributes.txt'
+    filename_node_attrs=prefix + '_node_attributes.txt'#n*18的矩阵，18是每个node的属性
     node_attrs=[]
     try:
         with open(filename_node_attrs) as f:
@@ -47,7 +47,7 @@ def read_graphfile(datadir, dataname, max_nodes=None):
         print('No node attributes')
        
     label_has_zero = False
-    filename_graphs=prefix + '_graph_labels.txt'
+    filename_graphs=prefix + '_graph_labels.txt'#1111111222222222......
     graph_labels=[]
 
     # assume that all graph labels appear in the dataset 
